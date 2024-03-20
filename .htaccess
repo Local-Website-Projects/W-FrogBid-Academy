@@ -1,0 +1,9 @@
+RewriteEngine on
+
+RewriteRule ^Login index.php [NE,L]
+
+RewriteRule ^Logout logout.php [NE,L]
+
+RewriteRule ^Home index.html [NE,L]
+
+RewriteRule ^Student-List student_list.php [NE,L]
