@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION['report'])){
+    $_SESSION['report'] = 0;
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -11,6 +18,9 @@
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- Sweet Alert-->
+    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
     <!-- preloader css -->
     <link rel="stylesheet" href="assets/css/preloader.min.css" type="text/css" />
@@ -312,224 +322,6 @@
                         </a>
                     </li>
 
-                    <!--<li>
-                        <a href="javascript: void(0);" class="has-arrow">
-                            <i data-feather="grid"></i>
-                            <span data-key="t-apps">Apps</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li>
-                                <a href="apps-calendar.html">
-                                    <span data-key="t-calendar">Calendar</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="apps-chat.html">
-                                    <span data-key="t-chat">Chat</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow">
-                                    <span data-key="t-email">Email</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="apps-email-inbox.html" data-key="t-inbox">Inbox</a></li>
-                                    <li><a href="apps-email-read.html" data-key="t-read-email">Read Email</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow">
-                                    <span data-key="t-invoices">Invoices</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="apps-invoices-list.html" data-key="t-invoice-list">Invoice List</a></li>
-                                    <li><a href="apps-invoices-detail.html" data-key="t-invoice-detail">Invoice Detail</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow">
-                                    <span data-key="t-contacts">Contacts</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="apps-contacts-grid.html" data-key="t-user-grid">User Grid</a></li>
-                                    <li><a href="apps-contacts-list.html" data-key="t-user-list">User List</a></li>
-                                    <li><a href="apps-contacts-profile.html" data-key="t-profile">Profile</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow">
-                            <i data-feather="users"></i>
-                            <span data-key="t-authentication">Authentication</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="auth-login.html" data-key="t-login">Login</a></li>
-                            <li><a href="auth-register.html" data-key="t-register">Register</a></li>
-                            <li><a href="auth-recoverpw.html" data-key="t-recover-password">Recover Password</a></li>
-                            <li><a href="auth-lock-screen.html" data-key="t-lock-screen">Lock Screen</a></li>
-                            <li><a href="auth-logout.html" data-key="t-logout">Log Out</a></li>
-                            <li><a href="auth-confirm-mail.html" data-key="t-confirm-mail">Confirm Mail</a></li>
-                            <li><a href="auth-email-verification.html" data-key="t-email-verification">Email Verification</a></li>
-                            <li><a href="auth-two-step-verification.html" data-key="t-two-step-verification">Two Step Verification</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow">
-                            <i data-feather="file-text"></i>
-                            <span data-key="t-pages">Pages</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
-                            <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
-                            <li><a href="pages-comingsoon.html" data-key="t-coming-soon">Coming Soon</a></li>
-                            <li><a href="pages-timeline.html" data-key="t-timeline">Timeline</a></li>
-                            <li><a href="pages-faqs.html" data-key="t-faqs">FAQs</a></li>
-                            <li><a href="pages-pricing.html" data-key="t-pricing">Pricing</a></li>
-                            <li><a href="pages-404.html" data-key="t-error-404">Error 404</a></li>
-                            <li><a href="pages-500.html" data-key="t-error-500">Error 500</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="layouts-horizontal.html">
-                            <i data-feather="layout"></i>
-                            <span data-key="t-horizontal">Horizontal</span>
-                        </a>
-                    </li>
-
-                    <li class="menu-title mt-2" data-key="t-components">Elements</li>
-
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow">
-                            <i data-feather="briefcase"></i>
-                            <span data-key="t-components">Components</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="ui-alerts.html" data-key="t-alerts">Alerts</a></li>
-                            <li><a href="ui-buttons.html" data-key="t-buttons">Buttons</a></li>
-                            <li><a href="ui-cards.html" data-key="t-cards">Cards</a></li>
-                            <li><a href="ui-carousel.html" data-key="t-carousel">Carousel</a></li>
-                            <li><a href="ui-dropdowns.html" data-key="t-dropdowns">Dropdowns</a></li>
-                            <li><a href="ui-grid.html" data-key="t-grid">Grid</a></li>
-                            <li><a href="ui-images.html" data-key="t-images">Images</a></li>
-                            <li><a href="ui-modals.html" data-key="t-modals">Modals</a></li>
-                            <li><a href="ui-offcanvas.html" data-key="t-offcanvas">Offcanvas</a></li>
-                            <li><a href="ui-progressbars.html" data-key="t-progress-bars">Progress Bars</a></li>
-                            <li><a href="ui-placeholders.html" data-key="t-progress-bars">Placeholders</a></li>
-                            <li><a href="ui-tabs-accordions.html" data-key="t-tabs-accordions">Tabs & Accordions</a></li>
-                            <li><a href="ui-typography.html" data-key="t-typography">Typography</a></li>
-                            <li><a href="ui-video.html" data-key="t-video">Video</a></li>
-                            <li><a href="ui-general.html" data-key="t-general">General</a></li>
-                            <li><a href="ui-colors.html" data-key="t-colors">Colors</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow">
-                            <i data-feather="gift"></i>
-                            <span data-key="t-ui-elements">Extended</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="extended-lightbox.html" data-key="t-lightbox">Lightbox</a></li>
-                            <li><a href="extended-rangeslider.html" data-key="t-range-slider">Range Slider</a></li>
-                            <li><a href="extended-sweet-alert.html" data-key="t-sweet-alert">SweetAlert 2</a></li>
-                            <li><a href="extended-session-timeout.html" data-key="t-session-timeout">Session Timeout</a></li>
-                            <li><a href="extended-rating.html" data-key="t-rating">Rating</a></li>
-                            <li><a href="extended-notifications.html" data-key="t-notifications">Notifications</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="javascript: void(0);">
-                            <i data-feather="box"></i>
-                            <span class="badge rounded-pill bg-soft-danger text-danger float-end">7</span>
-                            <span data-key="t-forms">Forms</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="form-elements.html" data-key="t-form-elements">Basic Elements</a></li>
-                            <li><a href="form-validation.html" data-key="t-form-validation">Validation</a></li>
-                            <li><a href="form-advanced.html" data-key="t-form-advanced">Advanced Plugins</a></li>
-                            <li><a href="form-editors.html" data-key="t-form-editors">Editors</a></li>
-                            <li><a href="form-uploads.html" data-key="t-form-upload">File Upload</a></li>
-                            <li><a href="form-wizard.html" data-key="t-form-wizard">Wizard</a></li>
-                            <li><a href="form-mask.html" data-key="t-form-mask">Mask</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow">
-                            <i data-feather="sliders"></i>
-                            <span data-key="t-tables">Tables</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="tables-basic.html" data-key="t-basic-tables">Bootstrap Basic</a></li>
-                            <li><a href="tables-datatable.html" data-key="t-data-tables">DataTables</a></li>
-                            <li><a href="tables-responsive.html" data-key="t-responsive-table">Responsive</a></li>
-                            <li><a href="tables-editable.html" data-key="t-editable-table">Editable</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow">
-                            <i data-feather="pie-chart"></i>
-                            <span data-key="t-charts">Charts</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="charts-apex.html" data-key="t-apex-charts">Apexcharts</a></li>
-                            <li><a href="charts-echart.html" data-key="t-e-charts">Echarts</a></li>
-                            <li><a href="charts-chartjs.html" data-key="t-chartjs-charts">Chartjs</a></li>
-                            <li><a href="charts-knob.html" data-key="t-knob-charts">Jquery Knob</a></li>
-                            <li><a href="charts-sparkline.html" data-key="t-sparkline-charts">Sparkline</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow">
-                            <i data-feather="cpu"></i>
-                            <span data-key="t-icons">Icons</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="icons-boxicons.html" data-key="t-boxicons">Boxicons</a></li>
-                            <li><a href="icons-materialdesign.html" data-key="t-material-design">Material Design</a></li>
-                            <li><a href="icons-dripicons.html" data-key="t-dripicons">Dripicons</a></li>
-                            <li><a href="icons-fontawesome.html" data-key="t-font-awesome">Font Awesome 5</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow">
-                            <i data-feather="map"></i>
-                            <span data-key="t-maps">Maps</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="maps-google.html" data-key="t-g-maps">Google</a></li>
-                            <li><a href="maps-vector.html" data-key="t-v-maps">Vector</a></li>
-                            <li><a href="maps-leaflet.html" data-key="t-l-maps">Leaflet</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow">
-                            <i data-feather="share-2"></i>
-                            <span data-key="t-multi-level">Multi Level</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="true">
-                            <li><a href="javascript: void(0);" data-key="t-level-1-1">Level 1.1</a></li>
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2">Level 1.2</a>
-                                <ul class="sub-menu" aria-expanded="true">
-                                    <li><a href="javascript: void(0);" data-key="t-level-2-1">Level 2.1</a></li>
-                                    <li><a href="javascript: void(0);" data-key="t-level-2-2">Level 2.2</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>-->
-
                 </ul>
 
 
@@ -566,6 +358,53 @@
                         </div>
                     </div>
                 </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <?php
+                        if($_SESSION['report'] == 1){
+                            ?>
+                            <div class="col-sm-12">
+                                <div class="alert alert-success alert-dismissible fade show px-4 mb-0 text-center" role="alert">
+                                    <i class="mdi mdi-check-all d-block display-4 mt-2 mb-3 text-success"></i>
+                                    <h5 class="text-success">ছাত্র/ছাত্রী রেজিষ্ট্রেশন সফল হয়েছে।</h5>
+                                    <p>বই সংগ্রহের জন্য আমাদের প্রতিনিধিকে এই ম্যাসেজটি দেখান।</p>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            </div><!-- end col -->
+                            <?php
+                            $_SESSION['report'] = 0;
+                        }
+                        if($_SESSION['report'] == 2){
+                            ?>
+                            <div class="col-sm-12">
+                                <div class="alert alert-danger alert-dismissible fade show px-4 mb-0 text-center" role="alert">
+                                    <i class="mdi mdi-block-helper d-block display-4 mt-2 mb-3 text-danger"></i>
+                                    <h5 class="text-danger">দুঃখিত। রেজিষ্ট্রেশন সফল হয় নি।</h5>
+                                    <p>পুনরায় চেষ্টা করুন।</p>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            </div><!-- end col -->
+                            <?php
+                            $_SESSION['report'] = 0;
+                        }
+                        if($_SESSION['report'] == 3){
+                            ?>
+                            <div class="col-sm-12">
+                                <div class="alert alert-warning alert-dismissible fade show px-4 mb-0 text-center" role="alert">
+                                    <i class="mdi mdi-block-helper d-block display-4 mt-2 mb-3 text-warning"></i>
+                                    <h5 class="text-danger">এই মোবাইল নাম্বারটি দ্বারা পূর্বে রেজিষ্ট্রেশন করা হয়েছে।</h5>
+                                    <p>নতুন ফোন নাম্বার দিয়ে চেষ্টা করুন।</p>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            </div><!-- end col -->
+                            <?php
+                            $_SESSION['report'] = 0;
+                        }
+                        ?>
+
+
+                    </div><!-- end row -->
+                </div>
                 <!-- end page title -->
                 <div class="row">
                     <div class="col-lg-12">
@@ -578,11 +417,11 @@
                                             <form action="insert.php" method="post">
                                                 <div class="row mb-3">
                                                     <div class="col-md-6">
-                                                        <label class="form-label">ছাত্র/ছাত্রীর নামঃ *</label>
+                                                        <label class="form-label">ছাত্র/ছাত্রীর নামঃ / Student's Name: *</label>
                                                         <input type="text" name="s_name" class="form-control" placeholder="ছাত্র/ছাত্রীর নাম" required>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label">অভিভাবকের নামঃ *</label>
+                                                        <label class="form-label">অভিভাবকের নামঃ / Parent's Name: *</label>
                                                         <input type="text" name="p_name" class="form-control" placeholder="অভিভাবকের নাম" required>
                                                     </div>
                                                 </div>
@@ -590,14 +429,14 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="formrow-email-input">মোবাইল নাম্বারঃ *</label>
-                                                            <input type="text" name="phone" class="form-control" placeholder="মোবাইল নাম্বার" required>
+                                                            <label class="form-label" for="formrow-email-input">মোবাইল নাম্বারঃ /Phone:  *</label>
+                                                            <input type="text" name="phone" id="phone" class="form-control" placeholder="মোবাইল নাম্বার" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
-                                                            <label class="form-label">বিকল্প মোবাইল নাম্বারঃ</label>
-                                                            <input type="text" name="s_phone" class="form-control" placeholder="বিকল্প মোবাইল নাম্বার">
+                                                            <label class="form-label">বিকল্প মোবাইল নাম্বারঃ / Alternative Phone Number:</label>
+                                                            <input type="text" name="s_phone" id="s_phone" class="form-control" placeholder="বিকল্প মোবাইল নাম্বার">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -605,13 +444,13 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="formrow-email-input">বয়সঃ</label>
+                                                            <label class="form-label" for="formrow-email-input">বয়সঃ / Age: </label>
                                                             <input type="number" name="age" class="form-control" placeholder="বয়স">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
-                                                            <label class="form-label">শ্রেণীঃ</label>
+                                                            <label class="form-label">শ্রেণীঃ / Class: </label>
                                                             <input type="text" name="class" class="form-control" placeholder="শ্রেণী">
                                                         </div>
                                                     </div>
@@ -619,14 +458,34 @@
 
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <div class="mb-3">
-                                                            <label class="form-label">শিক্ষা প্রতিষ্ঠানের নামঃ</label>
-                                                            <input type="text" name="institution" class="form-control" placeholder="শিক্ষা প্রতিষ্ঠানের নাম">
+                                                        <div>
+                                                            <label for="exampleDataList" class="form-label">শিক্ষা প্রতিষ্ঠানের নামঃ / School Name: </label>
+                                                            <input class="form-control" list="datalistOptions" id="exampleDataList" name="institution" placeholder="Type to search...">
+                                                            <datalist id="datalistOptions">
+                                                                <option value="Saint Joseph's High School, Khulna">
+                                                                <option value="Khulna Zilla School">
+                                                                <option value="Lions School & College">
+                                                                <option value="Khulna Collegiate Girls' School & KCC Women's College">
+                                                                <option value="Khulna Government Model School & College">
+                                                                <option value="Government Coronation Secondary Girls' School">
+                                                                <option value="Rosedale International School and College">
+                                                                <option value="Sristy Central School and College, Khulna">
+                                                                <option value="Bangladesh Noubahini School & College">
+                                                                <option value="Islamabad Collegiate School">
+                                                                <option value="Khulna Government Girls' High School">
+                                                                <option value="Govt.Model High school">
+                                                                <option value="Khulna Power Station High School">
+                                                                <option value="GSS Ananda Niketan Model School">
+                                                                <option value="Khulna Collectorate Public School and College">
+                                                                <option value="Shaheed Sheikh Abu Naser Secondary School">
+                                                                <option value="Govt Laboratory High School, Khulna">
+                                                                <option value="UCEP Wazed Ali School">
+                                                            </datalist>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
-                                                            <label class="form-label">ঠিকানাঃ</label>
+                                                            <label class="form-label">ঠিকানাঃ / Address:</label>
                                                             <input type="text" name="address" class="form-control" placeholder="ঠিকানা">
                                                         </div>
                                                     </div>
@@ -670,141 +529,6 @@
 <!-- END layout-wrapper -->
 
 
-<!-- Right Sidebar -->
-<div class="right-bar">
-    <div data-simplebar class="h-100">
-        <div class="rightbar-title d-flex align-items-center bg-dark p-3">
-
-            <h5 class="m-0 me-2 text-white">Theme Customizer</h5>
-
-            <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
-                <i class="mdi mdi-close noti-icon"></i>
-            </a>
-        </div>
-
-        <!-- Settings -->
-        <hr class="m-0" />
-
-        <div class="p-4">
-            <h6 class="mb-3">Layout</h6>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout"
-                       id="layout-vertical" value="vertical">
-                <label class="form-check-label" for="layout-vertical">Vertical</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout"
-                       id="layout-horizontal" value="horizontal">
-                <label class="form-check-label" for="layout-horizontal">Horizontal</label>
-            </div>
-
-            <h6 class="mt-4 mb-3 pt-2">Layout Mode</h6>
-
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout-mode"
-                       id="layout-mode-light" value="light">
-                <label class="form-check-label" for="layout-mode-light">Light</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout-mode"
-                       id="layout-mode-dark" value="dark">
-                <label class="form-check-label" for="layout-mode-dark">Dark</label>
-            </div>
-
-            <h6 class="mt-4 mb-3 pt-2">Layout Width</h6>
-
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout-width"
-                       id="layout-width-fuild" value="fuild" onchange="document.body.setAttribute('data-layout-size', 'fluid')">
-                <label class="form-check-label" for="layout-width-fuild">Fluid</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout-width"
-                       id="layout-width-boxed" value="boxed" onchange="document.body.setAttribute('data-layout-size', 'boxed')">
-                <label class="form-check-label" for="layout-width-boxed">Boxed</label>
-            </div>
-
-            <h6 class="mt-4 mb-3 pt-2">Layout Position</h6>
-
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout-position"
-                       id="layout-position-fixed" value="fixed" onchange="document.body.setAttribute('data-layout-scrollable', 'false')">
-                <label class="form-check-label" for="layout-position-fixed">Fixed</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout-position"
-                       id="layout-position-scrollable" value="scrollable" onchange="document.body.setAttribute('data-layout-scrollable', 'true')">
-                <label class="form-check-label" for="layout-position-scrollable">Scrollable</label>
-            </div>
-
-            <h6 class="mt-4 mb-3 pt-2">Topbar Color</h6>
-
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="topbar-color"
-                       id="topbar-color-light" value="light" onchange="document.body.setAttribute('data-topbar', 'light')">
-                <label class="form-check-label" for="topbar-color-light">Light</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="topbar-color"
-                       id="topbar-color-dark" value="dark" onchange="document.body.setAttribute('data-topbar', 'dark')">
-                <label class="form-check-label" for="topbar-color-dark">Dark</label>
-            </div>
-
-            <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Size</h6>
-
-            <div class="form-check sidebar-setting">
-                <input class="form-check-input" type="radio" name="sidebar-size"
-                       id="sidebar-size-default" value="default" onchange="document.body.setAttribute('data-sidebar-size', 'lg')">
-                <label class="form-check-label" for="sidebar-size-default">Default</label>
-            </div>
-            <div class="form-check sidebar-setting">
-                <input class="form-check-input" type="radio" name="sidebar-size"
-                       id="sidebar-size-compact" value="compact" onchange="document.body.setAttribute('data-sidebar-size', 'md')">
-                <label class="form-check-label" for="sidebar-size-compact">Compact</label>
-            </div>
-            <div class="form-check sidebar-setting">
-                <input class="form-check-input" type="radio" name="sidebar-size"
-                       id="sidebar-size-small" value="small" onchange="document.body.setAttribute('data-sidebar-size', 'sm')">
-                <label class="form-check-label" for="sidebar-size-small">Small (Icon View)</label>
-            </div>
-
-            <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Color</h6>
-
-            <div class="form-check sidebar-setting">
-                <input class="form-check-input" type="radio" name="sidebar-color"
-                       id="sidebar-color-light" value="light" onchange="document.body.setAttribute('data-sidebar', 'light')">
-                <label class="form-check-label" for="sidebar-color-light">Light</label>
-            </div>
-            <div class="form-check sidebar-setting">
-                <input class="form-check-input" type="radio" name="sidebar-color"
-                       id="sidebar-color-dark" value="dark" onchange="document.body.setAttribute('data-sidebar', 'dark')">
-                <label class="form-check-label" for="sidebar-color-dark">Dark</label>
-            </div>
-            <div class="form-check sidebar-setting">
-                <input class="form-check-input" type="radio" name="sidebar-color"
-                       id="sidebar-color-brand" value="brand" onchange="document.body.setAttribute('data-sidebar', 'brand')">
-                <label class="form-check-label" for="sidebar-color-brand">Brand</label>
-            </div>
-
-            <h6 class="mt-4 mb-3 pt-2">Direction</h6>
-
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout-direction"
-                       id="layout-direction-ltr" value="ltr">
-                <label class="form-check-label" for="layout-direction-ltr">LTR</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="layout-direction"
-                       id="layout-direction-rtl" value="rtl">
-                <label class="form-check-label" for="layout-direction-rtl">RTL</label>
-            </div>
-
-        </div>
-
-    </div> <!-- end slimscroll-menu-->
-</div>
-<!-- /Right-bar -->
-
 <!-- Right bar overlay-->
 <div class="rightbar-overlay"></div>
 
@@ -815,10 +539,46 @@
 <script src="assets/libs/simplebar/simplebar.min.js"></script>
 <script src="assets/libs/node-waves/waves.min.js"></script>
 <script src="assets/libs/feather-icons/feather.min.js"></script>
+
+<!-- Sweet Alerts js -->
+<script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+<!-- Sweet alert init js-->
+<script src="assets/js/pages/sweetalert.init.js"></script>
 <!-- pace js -->
 <script src="assets/libs/pace-js/pace.min.js"></script>
 
 <script src="assets/js/app.js"></script>
+
+<script>
+    document.getElementById("phone").addEventListener("input", function() {
+        var inputValue = this.value.trim(); // Trim any leading or trailing spaces
+        var regex = /^0[0-9]{10}$/; // Regex pattern to match number starting with 0 and having 11 digits in total
+
+        if (regex.test(inputValue)) {
+            // Valid input
+            this.setCustomValidity(""); // Clear any existing validation message
+        } else {
+            // Invalid input
+            this.setCustomValidity("মোবাইল নাম্বারটি সঠিক নয়। মোবাইল নাম্বারটি ০ দিয়ে শুরু হতে হবে এবং মোবাইল নাম্বারটি ১১ টি সংখ্যার হতে হবে।");
+        }
+    });
+</script>
+
+<script>
+    document.getElementById("s_phone").addEventListener("input", function() {
+        var inputValue = this.value.trim(); // Trim any leading or trailing spaces
+        var regex = /^0[0-9]{10}$/; // Regex pattern to match number starting with 0 and having 11 digits in total
+
+        if (inputValue === "" || regex.test(inputValue)) {
+            // Valid input or empty input
+            this.setCustomValidity(""); // Clear any existing validation message
+        } else {
+            // Invalid input
+            this.setCustomValidity("বিকল্প মোবাইল নাম্বারটি সঠিক নয়। মোবাইল নাম্বারটি ০ দিয়ে শুরু হতে হবে এবং মোবাইল নাম্বারটি ১১ টি সংখ্যার হতে হবে।");
+        }
+    });
+</script>
 
 </body>
 

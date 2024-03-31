@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("include/dbController.php");
 $db_handle = new DBController();
 date_default_timezone_set("Asia/Dhaka");
@@ -14,21 +15,32 @@ if(isset($_POST['register'])){
     $institution = $db_handle->checkValue($_POST['institution']);
     $address = $db_handle->checkValue($_POST['address']);
 
-    $register_student = $db_handle->insertQuery("INSERT INTO `contest_data`(`student_name`, `parents_name`, `phone`, `secondary_phone`, `class`, `age`, `institution`, `address`, `inserted_at`) VALUES ('$s_name','$p_name','$phone','$s_phone','$class','$age','$institution','$address','$inserted_at')");
+    $check_number = $db_handle->numRows("select * from contest_data where phone = '$phone'");
 
-    if($register_student){
+    if($check_number > 0){
+        $_SESSION['report'] = 3;
         echo "
         <script>
-        alert('ছাত্র/ছাত্রীর তথ্য সঠিক ভাবে আপলোড হয়েছে!');
         window.location.href = 'Home';
         </script>
         ";
-    } else{
-        echo "
+    } else {
+        $register_student = $db_handle->insertQuery("INSERT INTO `contest_data`(`student_name`, `parents_name`, `phone`, `secondary_phone`, `class`, `age`, `institution`, `address`, `inserted_at`) VALUES ('$s_name','$p_name','$phone','$s_phone','$class','$age','$institution','$address','$inserted_at')");
+
+        if($register_student){
+            $_SESSION['report'] = 1;
+            echo "
         <script>
-        alert('কোনো সমস্যা হয়েছে। আবার চেষ্ঠা করুন!');
         window.location.href = 'Home';
         </script>
         ";
+        } else{
+            $_SESSION['report'] = 2;
+            echo "
+        <script>
+        window.location.href = 'Home';
+        </script>
+        ";
+        }
     }
 }
