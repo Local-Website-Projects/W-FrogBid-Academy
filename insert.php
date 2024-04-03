@@ -14,6 +14,7 @@ if(isset($_POST['register'])){
     $class = $db_handle->checkValue($_POST['class']);
     $institution = $db_handle->checkValue($_POST['institution']);
     $address = $db_handle->checkValue($_POST['address']);
+    $interest = $db_handle->checkValue($_POST['interest']);
 
     $check_number = $db_handle->numRows("select * from contest_data where phone = '$phone'");
 
@@ -25,7 +26,7 @@ if(isset($_POST['register'])){
         </script>
         ";
     } else {
-        $register_student = $db_handle->insertQuery("INSERT INTO `contest_data`(`student_name`, `parents_name`, `phone`, `secondary_phone`, `class`, `age`, `institution`, `address`, `inserted_at`) VALUES ('$s_name','$p_name','$phone','$s_phone','$class','$age','$institution','$address','$inserted_at')");
+        $register_student = $db_handle->insertQuery("INSERT INTO `contest_data`(`student_name`, `parents_name`, `phone`, `secondary_phone`, `class`, `age`, `institution`, `address`, `inserted_at`,`interest`) VALUES ('$s_name','$p_name','$phone','$s_phone','$class','$age','$institution','$address','$inserted_at','$interest')");
 
         if($register_student){
             $_SESSION['report'] = 1;

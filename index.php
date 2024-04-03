@@ -459,6 +459,32 @@ if(!isset($_SESSION['report'])){
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div>
+                                                            <h5 class="font-size-14 mb-3">আগ্রহের বিষয় / Interest</h5>
+                                                            <div class="form-check mb-3">
+                                                                <input class="form-check-input" type="radio" name="interest" id="formRadios1" value="Art">
+                                                                <label class="form-check-label" for="formRadios1">
+                                                                    আর্ট
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check mb-3">
+                                                                <input class="form-check-input" type="radio" name="interest" id="formRadios2" value="Coding">
+                                                                <label class="form-check-label" for="formRadios2">
+                                                                    কোডিং
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check mb-3">
+                                                                <input class="form-check-input" type="radio" name="interest" id="formRadios3" value="Graphic">
+                                                                <label class="form-check-label" for="formRadios3">
+                                                                    গ্রাফিক্স
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div>
                                                             <label for="exampleDataList" class="form-label">শিক্ষা প্রতিষ্ঠানের নামঃ / School Name: </label>
                                                             <input class="form-control" list="datalistOptions" id="exampleDataList" name="institution" placeholder="Type to search...">
                                                             <datalist id="datalistOptions">
