@@ -48,14 +48,14 @@ window.location.href = 'Student-List';
     if ($update_query) {
         echo "
         <script>
-        alert('প্রতিযোগীতার জন্য প্রতিযোগীকে রেজিষ্ট্রেশন করা হয়েছে');
+        alert('Registration Complete Successfully!');
         window.location.href = 'Print_Receipt?id=$id'
 </script>
         ";
     } else {
         echo "
         <script>
-        alert('দুঃখিত! কোনো সমস্যা হয়েছে।');
+        alert('Something went wrong!');
         window.location.href = 'Student-List'
 </script>
         ";
