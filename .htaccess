@@ -4,4 +4,8 @@ RewriteRule ^Home index.php [NE,L]
 
 RewriteRule ^Student-List student_list.php [NE,L]
 
+RewriteRule ^Submit-Student submit_student.php [NE,L]
+
+RewriteRule ^Print_Receipt print_receipt.php [NE,L]
+
 RewriteRule ^Login login.php [NE,L]

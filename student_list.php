@@ -53,8 +53,8 @@ if(isset($_POST['update_data'])){
     <meta charset="utf-8" />
     <title>FrogBid Academy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesbrand" name="author" />
+    <meta content="FrogBid Academy" name="description" />
+    <meta content="FrogBid" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
@@ -327,6 +327,7 @@ if(isset($_POST['update_data'])){
                                                             <th>অভিভাবকের নাম</th>
                                                             <th>ফোন নাম্বার</th>
                                                             <th>এডিট</th>
+                                                            <th>জমা গ্রহন</th>
                                                         </tr>
                                                         </thead>
 
@@ -344,6 +345,15 @@ if(isset($_POST['update_data'])){
                                                                 <td><?php echo $fetch_studets[$i]['phone'];?></td>
                                                                 <td><a href="Student-List?edit=<?php echo $fetch_studets[$i]['id'];?>" class="btn btn-outline-secondary btn-sm edit" title="Edit">
                                                                         <i class="fas fa-pencil-alt"></i>
+                                                                    </a></td>
+                                                                <td><a href="<?php
+                                                                    if ($fetch_studets[$i]['unique_id'] == null) {
+                                                                        echo "Submit-Student?edit=" . $fetch_studets[$i]['id'];
+                                                                    } else {
+                                                                        echo "Print_Receipt?id=" . $fetch_studets[$i]['id'];
+                                                                    }
+                                                                    ?>" class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                                                                        <i class="fas fa-print"></i>
                                                                     </a></td>
                                                             </tr>
                                                             <?php
