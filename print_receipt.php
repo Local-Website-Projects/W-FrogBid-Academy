@@ -39,6 +39,15 @@ $student = $db_handle->runQuery("select * from contest_data where id = '$id'");
         p{
             font-size: 12px;
             font-weight: bold;
+            color: #000;
+        }
+        .container{
+            background-image: url("assets/texture.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 600px;
+            padding-top: 2%;
         }
     </style>
 
@@ -49,7 +58,7 @@ $student = $db_handle->runQuery("select * from contest_data where id = '$id'");
 <!-- <body data-layout="horizontal"> -->
 
 <!-- Begin page -->
-<div class="container-fluid" style="height: 374px; background-color: #eee;">
+<div class="container">
     <div class="row p-3">
         <div class="col-4">
             <img style="height: 80px; width: auto" src="assets/fa.png">
@@ -68,7 +77,7 @@ $student = $db_handle->runQuery("select * from contest_data where id = '$id'");
             </div>
         </div>
     </div>
-    <div class="row p-3">
+    <div class="row p-3 mt-3">
         <div class="col-6">
             <div class="row">
                 <div class="col-4">
@@ -150,12 +159,18 @@ $student = $db_handle->runQuery("select * from contest_data where id = '$id'");
             </div>
         </div>
     </div>
-
     <div class="row mt-5 flex align-items-end justify-content-end">
-        <div class="col-4">
+        <div class="col-4 pt-5">
             <p>Signature</p>
         </div>
     </div>
+
+    <div class="row" style="position:relative; bottom: -27px;">
+        <div class="col-12">
+            <img class="img-fluid" src="assets/footer.png">
+        </div>
+    </div>
+
 
 </div>
 <!-- END layout-wrapper -->
