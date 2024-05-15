@@ -32,9 +32,9 @@ if (isset($_POST['update_data'])) {
         $group = 'C';
     } else {
         echo "<script>
-alert('You have a wrong entry for the age value!');
-window.location.href = 'Student-List';
-</script>";
+                alert('You have a wrong entry for the age value!');
+                window.location.href = 'Student-List';
+               </script>";
     }
 
     function generateUniqueId($group) {
@@ -55,9 +55,9 @@ window.location.href = 'Student-List';
     } else {
         echo "
         <script>
-        alert('Something went wrong!');
-        window.location.href = 'Student-List'
-</script>
+                alert('Something went wrong!');
+                window.location.href = 'Student-List'
+        </script>
         ";
     }
 }

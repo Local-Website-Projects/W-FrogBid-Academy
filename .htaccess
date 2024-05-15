@@ -8,4 +8,6 @@ RewriteRule ^Submit-Student submit_student.php [NE,L]
 
 RewriteRule ^Print_Receipt print_receipt.php [NE,L]
 
+RewriteRule ^Send-SMS send_sms.php [NE,L]
+
 RewriteRule ^Login login.php [NE,L]
