@@ -29,14 +29,14 @@ if (isset($_POST['update_data'])) {
         echo "
         <script>
         alert('স্টুডেন্ট ডাটা এডিট সফল হয়েছে।');
-        window.location.href = 'Student-List'
+        window.location.href = 'Admit-Student-List'
 </script>
         ";
     } else {
         echo "
         <script>
         alert('দুঃখিত! কোনো সমস্যা হয়েছে।');
-        window.location.href = 'Student-List'
+        window.location.href = 'Admit-Student-List'
 </script>
         ";
     }
@@ -169,12 +169,12 @@ if (isset($_POST['update_data'])) {
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0 font-size-18">ছাত্র ছাত্রীদের তথ্য</h4>
+                            <h4 class="mb-sm-0 font-size-18">অংশগ্রহণকারী ছাত্র / ছাত্রীর তথ্য</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Students</a></li>
-                                    <li class="breadcrumb-item active">ছাত্র ছাত্রীদের তথ্য</li>
+                                    <li class="breadcrumb-item active">অংশগ্রহণকারী ছাত্র / ছাত্রীর তথ্য</li>
                                 </ol>
                             </div>
 
@@ -356,7 +356,7 @@ if (isset($_POST['update_data'])) {
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div>
-                                                <h5 class="font-size-14 mb-4">ছাত্র ছাত্রীদের তথ্য</h5>
+                                                <h5 class="font-size-14 mb-4">অংশগ্রহণকারী ছাত্র / ছাত্রীর তথ্য</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -381,8 +381,8 @@ if (isset($_POST['update_data'])) {
 
                                                         <tbody>
                                                         <?php
-                                                        $fetch_studets = $db_handle->runQuery("select * from contest_data order by id desc");
-                                                        $no_fetch_studets = $db_handle->numRows("select * from contest_data order by id desc");
+                                                        $fetch_studets = $db_handle->runQuery("select * from contest_data where status=1 order by id desc;");
+                                                        $no_fetch_studets = $db_handle->numRows("select * from contest_data where status=1 order by id desc;");
                                                         for ($i = 0; $i < $no_fetch_studets; $i++) {
                                                             ?>
                                                             <tr>
@@ -392,7 +392,7 @@ if (isset($_POST['update_data'])) {
                                                                 <td><?php echo $fetch_studets[$i]['phone']; ?></td>
                                                                 <td><?php echo $fetch_studets[$i]['institution']; ?></td>
                                                                 <td>
-                                                                    <a href="Student-List?edit=<?php echo $fetch_studets[$i]['id']; ?>"
+                                                                    <a href="Admit-Student-List?edit=<?php echo $fetch_studets[$i]['id']; ?>"
                                                                        class="btn btn-outline-secondary btn-sm edit"
                                                                        title="Edit">
                                                                         <i class="fas fa-pencil-alt"></i>
