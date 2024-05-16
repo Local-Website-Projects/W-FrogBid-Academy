@@ -381,8 +381,8 @@ if (isset($_POST['update_data'])) {
 
                                                         <tbody>
                                                         <?php
-                                                        $fetch_studets = $db_handle->runQuery("select * from contest_data order by id desc");
-                                                        $no_fetch_studets = $db_handle->numRows("select * from contest_data order by id desc");
+                                                        $fetch_studets = $db_handle->runQuery("select * from contest_data where status=0 order by id desc");
+                                                        $no_fetch_studets = $db_handle->numRows("select * from contest_data where status=0 order by id desc");
                                                         for ($i = 0; $i < $no_fetch_studets; $i++) {
                                                             ?>
                                                             <tr>
@@ -407,18 +407,6 @@ if (isset($_POST['update_data'])) {
                                                                        class="btn btn-outline-secondary btn-sm edit me-2"
                                                                        title="Edit">
                                                                         <i class="fas fa-print"></i>
-                                                                    </a>
-
-                                                                    <a href="<?php
-                                                                    if ($fetch_studets[$i]['unique_id'] == null) {
-                                                                        echo "Submit-Student?edit=" . $fetch_studets[$i]['id'];
-                                                                    } else {
-                                                                        echo "Send-SMS?id=" . $fetch_studets[$i]['id'];
-                                                                    }
-                                                                    ?>"
-                                                                       class="btn btn-outline-secondary btn-sm edit"
-                                                                       title="Send SMS">
-                                                                        <i class="fas fa-sms"></i>
                                                                     </a>
                                                                 </td>
                                                             </tr>

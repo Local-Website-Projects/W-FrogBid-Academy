@@ -370,7 +370,7 @@ if (isset($_POST['update_data'])) {
                                                         <tr>
                                                             <th>ক্রমিক নং</th>
                                                             <th>নাম</th>
-                                                            <th>অভিভাবকের নাম</th>
+                                                            <th>জমাদানের তারিখ</th>
                                                             <th>ফোন নাম্বার</th>
                                                             <th>শিক্ষা প্রতিষ্ঠানের নাম</th>
                                                             <th>এডিট</th>
@@ -381,14 +381,22 @@ if (isset($_POST['update_data'])) {
 
                                                         <tbody>
                                                         <?php
-                                                        $fetch_studets = $db_handle->runQuery("select * from contest_data where status=1 order by id desc;");
-                                                        $no_fetch_studets = $db_handle->numRows("select * from contest_data where status=1 order by id desc;");
+                                                        $fetch_studets = $db_handle->runQuery("select * from contest_data where status=1 order by updated_at desc;");
+                                                        $no_fetch_studets = $db_handle->numRows("select * from contest_data where status=1 order by updated_at desc;");
                                                         for ($i = 0; $i < $no_fetch_studets; $i++) {
                                                             ?>
                                                             <tr>
                                                                 <td><?php echo $i + 1; ?></td>
                                                                 <td><?php echo $fetch_studets[$i]['student_name']; ?></td>
-                                                                <td><?php echo $fetch_studets[$i]['parents_name']; ?></td>
+                                                                <td>
+                                                                    <?php
+                                                                    $updated_at = $fetch_studets[$i]['updated_at'];
+
+                                                                    $formatted_date = date('d/m/Y', strtotime($updated_at));
+
+                                                                    echo $formatted_date;
+                                                                    ?>
+                                                                </td>
                                                                 <td><?php echo $fetch_studets[$i]['phone']; ?></td>
                                                                 <td><?php echo $fetch_studets[$i]['institution']; ?></td>
                                                                 <td>
@@ -397,18 +405,7 @@ if (isset($_POST['update_data'])) {
                                                                        title="Edit">
                                                                         <i class="fas fa-pencil-alt"></i>
                                                                     </a></td>
-                                                                <td><a href="<?php
-                                                                    if ($fetch_studets[$i]['unique_id'] == null) {
-                                                                        echo "Submit-Student?edit=" . $fetch_studets[$i]['id'];
-                                                                    } else {
-                                                                        echo "Print_Receipt?id=" . $fetch_studets[$i]['id'];
-                                                                    }
-                                                                    ?>"
-                                                                       class="btn btn-outline-secondary btn-sm edit me-2"
-                                                                       title="Edit">
-                                                                        <i class="fas fa-print"></i>
-                                                                    </a>
-
+                                                                <td>
                                                                     <a href="<?php
                                                                     if ($fetch_studets[$i]['unique_id'] == null) {
                                                                         echo "Submit-Student?edit=" . $fetch_studets[$i]['id'];
