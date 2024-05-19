@@ -20,11 +20,12 @@ if (isset($_POST['update_data'])) {
     $s_phone = $db_handle->checkValue($_POST['s_phone']);
     $age = $db_handle->checkValue($_POST['age']);
     $class = $db_handle->checkValue($_POST['class']);
+    $submitted_art = $db_handle->checkValue($_POST['submitted_art']);
     $institution = $db_handle->checkValue($_POST['institution']);
     $address = $db_handle->checkValue($_POST['address']);
     $interest = $db_handle->checkValue($_POST['interest']);
 
-    $update_query = $db_handle->insertQuery("UPDATE `contest_data` SET `student_name`='$s_name',`parents_name`='$p_name',`phone`='$phone',`secondary_phone`='$s_phone',`class`='$class',`age`='$age',`institution`='$institution',`address`='$address',`updated_at`='$inserted_at',`interest` = '$interest' WHERE `id` = '$id'");
+    $update_query = $db_handle->insertQuery("UPDATE `contest_data` SET `student_name`='$s_name',`parents_name`='$p_name',`phone`='$phone',`secondary_phone`='$s_phone',`class`='$class',`age`='$age',`submitted_art`='$submitted_art',`institution`='$institution',`address`='$address',`interest` = '$interest' WHERE `id` = '$id'");
     if ($update_query) {
         echo "
         <script>
@@ -290,6 +291,26 @@ if (isset($_POST['update_data'])) {
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="col-md-6">
+                                                            <div>
+                                                                <label for="exampleDataList" class="form-label">Competition Art: </label>
+                                                                <input class="form-control" list="datalistOptions"
+                                                                       id="exampleDataList" name="submitted_art"
+                                                                       placeholder="Type to search..."
+                                                                       value="<?php echo $edit_student[0]['submitted_art']; ?>">
+                                                                <datalist id="datalistOptions">
+                                                                    <option value="Flower">
+                                                                    <option value="Fish">
+                                                                    <option value="Fruit">
+                                                                    <option value="Butterfly">
+                                                                    <option value="Sundarbans">
+                                                                    <option value="Bird">
+                                                                    <option value="Water Lily">
+                                                                    <option value="Boat">
+                                                                    <option value="Hill">
+                                                                </datalist>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                     <div class="row">
@@ -370,6 +391,8 @@ if (isset($_POST['update_data'])) {
                                                         <tr>
                                                             <th>ক্রমিক নং</th>
                                                             <th>নাম</th>
+                                                            <th>ID</th>
+                                                            <th>Competition Art</th>
                                                             <th>জমাদানের তারিখ</th>
                                                             <th>ফোন নাম্বার</th>
                                                             <th>শিক্ষা প্রতিষ্ঠানের নাম</th>
@@ -388,6 +411,8 @@ if (isset($_POST['update_data'])) {
                                                             <tr>
                                                                 <td><?php echo $i + 1; ?></td>
                                                                 <td><?php echo $fetch_studets[$i]['student_name']; ?></td>
+                                                                <td><?php echo $fetch_studets[$i]['unique_id']; ?></td>
+                                                                <td><?php echo $fetch_studets[$i]['submitted_art']; ?></td>
                                                                 <td>
                                                                     <?php
                                                                     $updated_at = $fetch_studets[$i]['updated_at'];

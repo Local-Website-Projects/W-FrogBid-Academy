@@ -9,6 +9,8 @@ if (isset($_POST['submit'])) {
     $fetch_students = $db_handle->runQuery($query);
     $no_fetch_students = $db_handle->numRows($query);
 
+    echo $query;
+
     $tableValues = [];
     $columns = [];
 

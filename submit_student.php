@@ -20,6 +20,7 @@ if (isset($_POST['update_data'])) {
     $s_phone = $db_handle->checkValue($_POST['s_phone']);
     $age = $db_handle->checkValue($_POST['age']);
     $class = $db_handle->checkValue($_POST['class']);
+    $submitted_art = $db_handle->checkValue($_POST['submitted_art']);
     $institution = $db_handle->checkValue($_POST['institution']);
     $address = $db_handle->checkValue($_POST['address']);
     $interest = $db_handle->checkValue($_POST['interest']);
@@ -44,7 +45,7 @@ if (isset($_POST['update_data'])) {
         return $r_id;
     }
     $uniqueId = generateUniqueId($group);
-    $update_query = $db_handle->insertQuery("UPDATE `contest_data` SET `student_name`='$s_name',`parents_name`='$p_name',`phone`='$phone',`secondary_phone`='$s_phone',`class`='$class',`age`='$age',`institution`='$institution',`address`='$address',`updated_at`='$inserted_at',`interest` = '$interest', `contest_group` = '$group',`status` = '1', `unique_id` = '$uniqueId' WHERE `id` = '$id'");
+    $update_query = $db_handle->insertQuery("UPDATE `contest_data` SET `student_name`='$s_name',`parents_name`='$p_name',`phone`='$phone',`secondary_phone`='$s_phone',`class`='$class',`age`='$age',`submitted_art`='$submitted_art',`institution`='$institution',`address`='$address',`updated_at`='$inserted_at',`interest` = '$interest', `contest_group` = '$group',`status` = '1', `unique_id` = '$uniqueId' WHERE `id` = '$id'");
     if ($update_query) {
         echo "
         <script>
@@ -300,6 +301,23 @@ if (isset($_POST['update_data'])) {
                                                                     গ্রাফিক্স
                                                                 </label>
                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div>
+                                                            <label for="exampleDataList" class="form-label">Competition Art: </label>
+                                                            <input class="form-control" list="datalistOptions" id="exampleDataList" name="submitted_art" placeholder="Type to search..." required>
+                                                            <datalist id="datalistOptions">
+                                                                <option value="Flower">
+                                                                <option value="Fish">
+                                                                <option value="Fruit">
+                                                                <option value="Butterfly">
+                                                                <option value="Sundarbans">
+                                                                <option value="Bird">
+                                                                <option value="Water Lily">
+                                                                <option value="Boat">
+                                                                <option value="Hill">
+                                                            </datalist>
                                                         </div>
                                                     </div>
                                                 </div>
