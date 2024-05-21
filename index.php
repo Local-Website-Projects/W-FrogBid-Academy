@@ -489,23 +489,14 @@ if(!isset($_SESSION['report'])){
                                                             <input class="form-control" list="datalistOptions" id="exampleDataList" name="institution" placeholder="Type to search...">
                                                             <datalist id="datalistOptions">
                                                                 <option value="Saint Joseph's High School, Khulna">
-                                                                <option value="Khulna Zilla School">
-                                                                <option value="Lions School & College">
                                                                 <option value="Khulna Collegiate Girls' School & KCC Women's College">
-                                                                <option value="Khulna Government Model School & College">
-                                                                <option value="Government Coronation Secondary Girls' School">
                                                                 <option value="Rosedale International School and College">
                                                                 <option value="Sristy Central School and College, Khulna">
-                                                                <option value="Bangladesh Noubahini School & College">
                                                                 <option value="Islamabad Collegiate School">
-                                                                <option value="Khulna Government Girls' High School">
-                                                                <option value="Govt.Model High school">
-                                                                <option value="Khulna Power Station High School">
-                                                                <option value="GSS Ananda Niketan Model School">
-                                                                <option value="Khulna Collectorate Public School and College">
-                                                                <option value="Shaheed Sheikh Abu Naser Secondary School">
-                                                                <option value="Govt Laboratory High School, Khulna">
-                                                                <option value="UCEP Wazed Ali School">
+                                                                <option value="Navy Anchorage School & College Khulna">
+                                                                <option value="SOS HERMANN GMEINER SCHOOL KHULNA">
+                                                                <option value="Khulna University School, Khulna">
+                                                                <option value="Zohra Khatun Shishu Vidya Niketon, Khulna">
                                                             </datalist>
                                                         </div>
                                                     </div>

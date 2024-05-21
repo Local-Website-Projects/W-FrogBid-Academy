@@ -18,7 +18,26 @@ if(isset($_POST['register'])){
 
     $check_number = $db_handle->numRows("select * from contest_data where phone = '$phone'");
 
-    if($check_number > 0){
+    if($phone=='01700000000'){
+        $register_student = $db_handle->insertQuery("INSERT INTO `contest_data`(`student_name`, `parents_name`, `phone`, `secondary_phone`, `class`, `age`, `institution`, `address`, `inserted_at`,`interest`) VALUES ('$s_name','$p_name','$phone','$s_phone','$class','$age','$institution','$address','$inserted_at','$interest')");
+
+        if($register_student){
+            $_SESSION['report'] = 1;
+            echo "
+        <script>
+        window.location.href = 'Home';
+        </script>
+        ";
+        } else{
+            $_SESSION['report'] = 2;
+            echo "
+        <script>
+        window.location.href = 'Home';
+        </script>
+        ";
+        }
+    }
+    else if($check_number > 0){
         $_SESSION['report'] = 3;
         echo "
         <script>

@@ -39,15 +39,6 @@ $student = $db_handle->runQuery("select * from contest_data where id = '$id'");
         p{
             font-size: 12px;
             font-weight: bold;
-            color: #000;
-        }
-        .container{
-            background-image: url("assets/texture.png");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 600px;
-            padding-top: 2%;
         }
     </style>
 
@@ -58,7 +49,7 @@ $student = $db_handle->runQuery("select * from contest_data where id = '$id'");
 <!-- <body data-layout="horizontal"> -->
 
 <!-- Begin page -->
-<div class="container">
+<div class="container-fluid" id="divToPrint" style="height: 374px; background-color: #eee;">
     <div class="row p-3">
         <div class="col-4">
             <img style="height: 80px; width: auto" src="assets/fa.png">
@@ -77,7 +68,7 @@ $student = $db_handle->runQuery("select * from contest_data where id = '$id'");
             </div>
         </div>
     </div>
-    <div class="row p-3 mt-3">
+    <div class="row p-3">
         <div class="col-6">
             <div class="row">
                 <div class="col-4">
@@ -159,22 +150,20 @@ $student = $db_handle->runQuery("select * from contest_data where id = '$id'");
             </div>
         </div>
     </div>
+
     <div class="row mt-5 flex align-items-end justify-content-end">
-        <div class="col-4 pt-5">
+        <div class="col-4">
             <p>Signature</p>
         </div>
     </div>
 
-    <div class="row" style="position:relative; bottom: -27px;">
-        <div class="col-12">
-            <img class="img-fluid" src="assets/footer.png">
-        </div>
-    </div>
-
-
 </div>
 <!-- END layout-wrapper -->
 
+<div class="container-fluid mt-5 text-end" id="printBtn">
+    <button type="button" class="btn btn-primary pe-5 ps-5 me-2" onclick="printDiv();"><i class="fas fa-print"></i> Print</button>
+    <a href="Send-SMS?id=<?php echo $student[0]['id'];?>" class="btn btn-secondary ps-5 pe-5"><i class="fas fa-sms"></i> Send SMS</a>
+</div>
 
 <!-- Right bar overlay-->
 <div class="rightbar-overlay"></div>
@@ -225,6 +214,21 @@ $student = $db_handle->runQuery("select * from contest_data where id = '$id'");
             this.setCustomValidity("বিকল্প মোবাইল নাম্বারটি সঠিক নয়। মোবাইল নাম্বারটি ০ দিয়ে শুরু হতে হবে এবং মোবাইল নাম্বারটি ১১ টি সংখ্যার হতে হবে।");
         }
     });
+
+    function printDiv() {
+        let printContents = document.getElementById("divToPrint").innerHTML;
+        let originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+
+        // Hide the button after it's clicked
+        document.getElementById('printBtn').style.display = 'none';
+    }
+
 </script>
 
 </body>

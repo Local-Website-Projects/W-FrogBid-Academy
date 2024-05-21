@@ -9,11 +9,11 @@ class DBController {
     private $conn;
 
     function __construct() {
-        if($_SERVER['SERVER_NAME']=="www.enjoysexshop.com"||$_SERVER['SERVER_NAME']=="enjoysexshop.com"){
+        if($_SERVER['SERVER_NAME']=="www.frogbidacademy.com"||$_SERVER['SERVER_NAME']=="frogbidacademy.com"){
             $this->host = "localhost";
-            $this->user = "uu19zxtx4rwm0";
-            $this->password = "s11j&4{1u#11";
-            $this->database = "db4nwyuyymp4b1";
+            $this->user = "u3v6xphswm63g";
+            $this->password = ":31~Ji~.45b#";
+            $this->database = "dbjr4x0rg4rb9g";
         }
 
         $this->conn = $this->connectDB();

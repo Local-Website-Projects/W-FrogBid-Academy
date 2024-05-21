@@ -20,23 +20,24 @@ if (isset($_POST['update_data'])) {
     $s_phone = $db_handle->checkValue($_POST['s_phone']);
     $age = $db_handle->checkValue($_POST['age']);
     $class = $db_handle->checkValue($_POST['class']);
+    $submitted_art = $db_handle->checkValue($_POST['submitted_art']);
     $institution = $db_handle->checkValue($_POST['institution']);
     $address = $db_handle->checkValue($_POST['address']);
     $interest = $db_handle->checkValue($_POST['interest']);
 
-    $update_query = $db_handle->insertQuery("UPDATE `contest_data` SET `student_name`='$s_name',`parents_name`='$p_name',`phone`='$phone',`secondary_phone`='$s_phone',`class`='$class',`age`='$age',`institution`='$institution',`address`='$address',`updated_at`='$inserted_at',`interest` = '$interest' WHERE `id` = '$id'");
+    $update_query = $db_handle->insertQuery("UPDATE `contest_data` SET `student_name`='$s_name',`parents_name`='$p_name',`phone`='$phone',`secondary_phone`='$s_phone',`class`='$class',`age`='$age',`submitted_art`='$submitted_art',`institution`='$institution',`address`='$address',`interest` = '$interest' WHERE `id` = '$id'");
     if ($update_query) {
         echo "
         <script>
         alert('স্টুডেন্ট ডাটা এডিট সফল হয়েছে।');
-        window.location.href = 'Student-List'
+        window.location.href = 'Admit-Student-List'
 </script>
         ";
     } else {
         echo "
         <script>
         alert('দুঃখিত! কোনো সমস্যা হয়েছে।');
-        window.location.href = 'Student-List'
+        window.location.href = 'Admit-Student-List'
 </script>
         ";
     }
@@ -169,12 +170,12 @@ if (isset($_POST['update_data'])) {
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0 font-size-18">ছাত্র ছাত্রীদের তথ্য</h4>
+                            <h4 class="mb-sm-0 font-size-18">অংশগ্রহণকারী ছাত্র / ছাত্রীর তথ্য</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Students</a></li>
-                                    <li class="breadcrumb-item active">ছাত্র ছাত্রীদের তথ্য</li>
+                                    <li class="breadcrumb-item active">অংশগ্রহণকারী ছাত্র / ছাত্রীর তথ্য</li>
                                 </ol>
                             </div>
 
@@ -290,6 +291,26 @@ if (isset($_POST['update_data'])) {
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="col-md-6">
+                                                            <div>
+                                                                <label for="exampleDataList" class="form-label">Competition Art: </label>
+                                                                <input class="form-control" list="datalistOptions"
+                                                                       id="exampleDataList" name="submitted_art"
+                                                                       placeholder="Type to search..."
+                                                                       value="<?php echo $edit_student[0]['submitted_art']; ?>">
+                                                                <datalist id="datalistOptions">
+                                                                    <option value="Flower">
+                                                                    <option value="Fish">
+                                                                    <option value="Fruit">
+                                                                    <option value="Butterfly">
+                                                                    <option value="Sundarbans">
+                                                                    <option value="Bird">
+                                                                    <option value="Water Lily">
+                                                                    <option value="Boat">
+                                                                    <option value="Hill">
+                                                                </datalist>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                     <div class="row">
@@ -356,7 +377,7 @@ if (isset($_POST['update_data'])) {
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div>
-                                                <h5 class="font-size-14 mb-4">ছাত্র ছাত্রীদের তথ্য</h5>
+                                                <h5 class="font-size-14 mb-4">অংশগ্রহণকারী ছাত্র / ছাত্রীর তথ্য</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -370,7 +391,9 @@ if (isset($_POST['update_data'])) {
                                                         <tr>
                                                             <th>ক্রমিক নং</th>
                                                             <th>নাম</th>
-                                                            <th>অভিভাবকের নাম</th>
+                                                            <th>ID</th>
+                                                            <th>Competition Art</th>
+                                                            <th>জমাদানের তারিখ</th>
                                                             <th>ফোন নাম্বার</th>
                                                             <th>শিক্ষা প্রতিষ্ঠানের নাম</th>
                                                             <th>এডিট</th>
@@ -381,32 +404,43 @@ if (isset($_POST['update_data'])) {
 
                                                         <tbody>
                                                         <?php
-                                                        $fetch_studets = $db_handle->runQuery("select * from contest_data where status=0 order by id desc");
-                                                        $no_fetch_studets = $db_handle->numRows("select * from contest_data where status=0 order by id desc");
+                                                        $fetch_studets = $db_handle->runQuery("select * from contest_data where status=1 order by updated_at desc;");
+                                                        $no_fetch_studets = $db_handle->numRows("select * from contest_data where status=1 order by updated_at desc;");
                                                         for ($i = 0; $i < $no_fetch_studets; $i++) {
                                                             ?>
                                                             <tr>
                                                                 <td><?php echo $i + 1; ?></td>
                                                                 <td><?php echo $fetch_studets[$i]['student_name']; ?></td>
-                                                                <td><?php echo $fetch_studets[$i]['parents_name']; ?></td>
+                                                                <td><?php echo $fetch_studets[$i]['unique_id']; ?></td>
+                                                                <td><?php echo $fetch_studets[$i]['submitted_art']; ?></td>
+                                                                <td>
+                                                                    <?php
+                                                                    $updated_at = $fetch_studets[$i]['updated_at'];
+
+                                                                    $formatted_date = date('d/m/Y', strtotime($updated_at));
+
+                                                                    echo $formatted_date;
+                                                                    ?>
+                                                                </td>
                                                                 <td><?php echo $fetch_studets[$i]['phone']; ?></td>
                                                                 <td><?php echo $fetch_studets[$i]['institution']; ?></td>
                                                                 <td>
-                                                                    <a href="Student-List?edit=<?php echo $fetch_studets[$i]['id']; ?>"
+                                                                    <a href="Admit-Student-List?edit=<?php echo $fetch_studets[$i]['id']; ?>"
                                                                        class="btn btn-outline-secondary btn-sm edit"
                                                                        title="Edit">
                                                                         <i class="fas fa-pencil-alt"></i>
                                                                     </a></td>
-                                                                <td><a href="<?php
+                                                                <td>
+                                                                    <a href="<?php
                                                                     if ($fetch_studets[$i]['unique_id'] == null) {
                                                                         echo "Submit-Student?edit=" . $fetch_studets[$i]['id'];
                                                                     } else {
-                                                                        echo "Print_Receipt?id=" . $fetch_studets[$i]['id'];
+                                                                        echo "Send-SMS?id=" . $fetch_studets[$i]['id'];
                                                                     }
                                                                     ?>"
-                                                                       class="btn btn-outline-secondary btn-sm edit me-2"
-                                                                       title="Edit">
-                                                                        <i class="fas fa-print"></i>
+                                                                       class="btn btn-outline-secondary btn-sm edit"
+                                                                       title="Send SMS">
+                                                                        <i class="fas fa-sms"></i>
                                                                     </a>
                                                                 </td>
                                                             </tr>
