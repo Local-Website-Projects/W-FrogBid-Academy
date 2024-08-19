@@ -43,6 +43,25 @@ if (isset($_POST['update_data'])) {
     }
 }
 
+if(isset($_GET['result'])){
+    $update_result = $db_handle->insertQuery("UPDATE `contest_data` SET `result`='1' WHERE id = {$_GET['result']}");
+    if ($update_result) {
+        echo "
+        <script>
+        alert('স্টুডেন্ট ডাটা এডিট সফল হয়েছে।');
+        window.location.href = 'Admit-Student-List'
+</script>
+        ";
+    } else {
+        echo "
+        <script>
+        alert('দুঃখিত! কোনো সমস্যা হয়েছে।');
+        window.location.href = 'Admit-Student-List'
+</script>
+        ";
+    }
+}
+
 
 ?>
 
@@ -145,6 +164,12 @@ if (isset($_POST['update_data'])) {
                         <a href="Admit-Student-List">
                             <i data-feather="list"></i>
                             <span data-key="t-dashboard">অংশগ্রহণকারী ছাত্র / ছাত্রী</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="SMS-Status">
+                            <i data-feather="list"></i>
+                            <span data-key="t-dashboard">SMS অবস্থা যাচাই</span>
                         </a>
                     </li>
 
@@ -396,8 +421,10 @@ if (isset($_POST['update_data'])) {
                                                             <th>জমাদানের তারিখ</th>
                                                             <th>ফোন নাম্বার</th>
                                                             <th>শিক্ষা প্রতিষ্ঠানের নাম</th>
+                                                            <th>পুরষ্কারের অবসস্া</th>
                                                             <th>এডিট</th>
                                                             <th>জমা গ্রহন</th>
+                                                            <th>পুরষ্কার</th>
                                                         </tr>
                                                         </thead>
 
@@ -424,6 +451,7 @@ if (isset($_POST['update_data'])) {
                                                                 </td>
                                                                 <td><?php echo $fetch_studets[$i]['phone']; ?></td>
                                                                 <td><?php echo $fetch_studets[$i]['institution']; ?></td>
+                                                                <td><?php if($fetch_studets[$i]['result'] == 1) echo 'Selected'; else echo '';?></td>
                                                                 <td>
                                                                     <a href="Admit-Student-List?edit=<?php echo $fetch_studets[$i]['id']; ?>"
                                                                        class="btn btn-outline-secondary btn-sm edit"
@@ -443,6 +471,12 @@ if (isset($_POST['update_data'])) {
                                                                         <i class="fas fa-sms"></i>
                                                                     </a>
                                                                 </td>
+                                                                <td>
+                                                                    <a href="Admit-Student-List?result=<?php echo $fetch_studets[$i]['id']; ?>"
+                                                                       class="btn btn-outline-secondary btn-sm edit"
+                                                                       title="Edit">
+                                                                        <i class="fas fa-pencil-alt"></i>
+                                                                    </a></td>
                                                             </tr>
                                                             <?php
                                                         }

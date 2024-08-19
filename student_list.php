@@ -147,6 +147,13 @@ if (isset($_POST['update_data'])) {
                         </a>
                     </li>
 
+                    <li>
+                        <a href="SMS-Status">
+                            <i data-feather="list"></i>
+                            <span data-key="t-dashboard">SMS অবস্থা যাচাই</span>
+                        </a>
+                    </li>
+
                 </ul>
 
 
